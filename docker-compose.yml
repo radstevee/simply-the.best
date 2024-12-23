@@ -1,0 +1,15 @@
+services:
+  site:
+    build: .
+    ports:
+      - "4321:4321"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stb.rule=HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.simply-the.best`)"
+      - "traefik.http.routers.stb.entrypoints=web"
+      - "traefik.http.routers.stb.middlewares=stb-redir"
+      - "traefik.http.routers.stb.service=noop"
+      - "traefik.http.middlewares.stb-redir.redirectregex.regex=^https?://([a-zA-Z0-9-]+)\\.simply-the\\.best(.*)"
+      - "traefik.http.middlewares.stb-redir.redirectregex.replacement=http://simply-the.best/$1$2"
+      - "traefik.http.middlewares.stb-redir.redirectregex.permanent=true"
+      - "traefik.http.services.noop.loadbalancer.server.port=80"

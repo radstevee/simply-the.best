@@ -2,12 +2,13 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { remarkReadingTime } from './src/utils/remark-reading-time.mjs';
+import node from '@astrojs/node';
 
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astro-theme-cody.netlify.app',
+  site: 'https://simply-the.best',
   integrations: [mdx(), sitemap(), tailwind()],
   // NOTE: Make sure this matches your supported languages in the file: src/consts.ts
   i18n: {
@@ -25,6 +26,10 @@ export default defineConfig({
       },
     }
   },
+  output: 'server',
+  adapter: node({
+    mode: 'standalone',
+  }),
 });
 
 
