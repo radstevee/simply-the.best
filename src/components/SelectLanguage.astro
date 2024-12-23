@@ -6,7 +6,7 @@ import {
     type SupportedLanguage,
 } from "src/utils/i18n";
 
-const { class: className } = Astro.props;
+const {class: className} = Astro.props;
 
 let currentLanguage = getLangFromUrl(Astro.url);
 ---
@@ -15,23 +15,23 @@ let currentLanguage = getLangFromUrl(Astro.url);
     <label>
         <span class="sr-only">Select Language</span>
         <select
-            name="languages"
-            id="lang-select"
-            value={currentLanguage}
-            class:list={[className]}
+                name="languages"
+                id="lang-select"
+                value={currentLanguage}
+                class:list={[className]}
         >
             {
                 getSupportedLanguages().map((lang: string) => {
                     return (
-                        <option
-                            class="outline-none"
-                            value={getLocalizedUrl(
-                                Astro.url,
-                                lang as SupportedLanguage,
-                            )}
-                            selected={lang === currentLanguage}
-                            set:html={lang}
-                        />
+                            <option
+                                    class="outline-none"
+                                    value={getLocalizedUrl(
+                                        Astro.url,
+                                        lang as SupportedLanguage,
+                                    )}
+                                    selected={lang === currentLanguage}
+                                    set:html={lang}
+                            />
                     );
                 })
             }
@@ -48,17 +48,17 @@ let currentLanguage = getLangFromUrl(Astro.url);
                 select.addEventListener("change", (e) => {
                     if (e.currentTarget instanceof HTMLSelectElement) {
                         window.location.pathname = e.currentTarget.value;
-                    }
-                });
+                        }
+                    });
+                }
             }
         }
-    }
 
-    customElements.define("lang-select", LangSelect);
+        customElements.define("lang-select", LangSelect);
 </script>
 
 <style>
-    select {
-        @apply bg-bgColor border-b border-accent focus:border-accent focus:border;
+select {
+    @apply bg-bgColor border-b border-accent focus:border-accent focus:border;
     }
 </style>

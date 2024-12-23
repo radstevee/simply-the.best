@@ -1,6 +1,6 @@
-import { DEFAULT_LANG, SUPPORTED_LANGUAGES } from "src/consts";
-import nav, { type NavEntry } from '@/i18n/nav';
-import ui, { type UIEntry } from "@/i18n/ui";
+import {DEFAULT_LANG, SUPPORTED_LANGUAGES} from "src/consts";
+import nav, {type NavEntry} from '@/i18n/nav';
+import ui, {type UIEntry} from "@/i18n/ui";
 
 export type SupportedLanguage = keyof typeof SUPPORTED_LANGUAGES;
 

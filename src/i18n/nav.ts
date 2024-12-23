@@ -1,75 +1,38 @@
 /**
  * This configures the navigation bar and footer. Each entry is a nav link with
  * the correct translation and url path.
- * 
+ *
  * All languages will follow this ordering/structure and will fallback to the
- * default language for any entries that haven't been translated 
+ * default language for any entries that haven't been translated
  */
 
-import type { SupportedLanguage } from "src/utils/i18n";
+import type {SupportedLanguage} from "src/utils/i18n";
 
 export default {
     "en": {
         "home": {
-            text: "Home",
+            text: "home",
             slug: ""
         },
         "about": {
-            text: "About",
+            text: "about",
             slug: "about"
         },
         "blog": {
-            text: "Blog",
+            text: "blog",
             slug: "blog",
             route: "/blog/pages/1"
         },
-        "projects": {
-            text: "Projects",
-            slug: "projects",
-            route: "/projects/pages/1"
-        },
         "archive": {
-            text: "Archive",
+            text: "archive",
             slug: "archive"
         },
         "tags": {
-            text: "Tags",
+            text: "tags",
             slug: "tags"
         },
         "series": {
-            text: "Series",
-            slug: "series"
-        }
-    },
-    "es": {
-        "home": {
-            text: "Página Principal",
-            slug: ""
-        },
-        "about": {
-            text: "Acerca De",
-            slug: "about"
-        },
-        "blog": {
-            text: "Blog",
-            slug: "blog",
-            route: "/blog/pages/1"
-        },
-        "projects": {
-            text: "Proyectos",
-            slug: "projects",
-            route: "/projects/pages/1"
-        },
-        "archive": {
-            text: "Archivo",
-            slug: "archive"
-        },
-        "tags": {
-            text: "Etiquetas",
-            slug: "tags"
-        },
-        "series": {
-            text: "Serie",
+            text: "series",
             slug: "series"
         }
     }

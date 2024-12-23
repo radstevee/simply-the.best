@@ -1,12 +1,15 @@
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	darkMode: "class",
 	theme: {
-		fontFamily: {
-			'mono': ['Space Mono', 'monospace']
-		},
 		extend: {
+			fontFamily: {
+				mono: ['ZedSans', ...defaultTheme.fontFamily.mono],
+				sans: ['ZedSans', ...defaultTheme.fontFamily.sans]
+			},
 			colors: {
 				bgColor: "var(--theme-bg)",
 				textColor: "var(--theme-text)",
