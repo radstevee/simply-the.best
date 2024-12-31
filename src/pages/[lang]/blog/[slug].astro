@@ -9,6 +9,7 @@ import {
 import {getSupportedLanguages, type SupportedLanguage} from "src/utils/i18n";
 import type {CollectionEntry} from "astro:content";
 
+export const prerender = true;
 export const getStaticPaths = (async () => {
     const blogEntries = await getAllPosts();
     return getSupportedLanguages().flatMap((lang) => {
