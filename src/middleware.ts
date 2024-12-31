@@ -1,4 +1,4 @@
-import {defineMiddleware} from "astro/middleware";
+import { defineMiddleware } from "astro/middleware";
 
 export const onRequest = defineMiddleware((ctx, next) => {
     const host = ctx.url.host;
@@ -12,7 +12,6 @@ export const onRequest = defineMiddleware((ctx, next) => {
     const subdomain = hostParts.slice(0, -2).join(".");
     const target = subdomain.replace("-is", "").replace("-are", "");
 
-    console.log("Target: " + target);
-
-    return next();
+    return Response.redirect(new URL("https://simply-the.best/en/blog/" + target), 302);
 });
+
