@@ -6,7 +6,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.stb-middleware.replacepathregex.regex=^/$"
-      - "traefik.http.middlewares.stb-middleware.replacepathregex.replacement=/([a-z0-9-]+)$$"
+      - "traefik.http.middlewares.stb-middleware.replacepathregex.replacement=/$${1}"
       - "traefik.http.routers.stb-site.rule=Host(`simply-the.best`)"
       - "traefik.http.routers.stb-site.service=site-service"
       - "traefik.http.routers.stb.rule=HostRegexp(`[a-z0-9-]+\\.simply-the\\.best`)"
