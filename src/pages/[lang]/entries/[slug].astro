@@ -20,7 +20,7 @@ export const getStaticPaths = (async () => {
 
         return filteredByLanguage.map((post) => {
             const slug = getSlugFromCollectionEntry(
-                post as CollectionEntry<"blog">,
+                post as CollectionEntry<"entries">,
             );
             return {
                 params: {lang, slug},
@@ -35,6 +35,6 @@ const {post} = Astro.props;
 const {Content} = await post.render();
 ---
 
-<BlogPost post={post as CollectionEntry<"blog">}>
+<BlogPost post={post as CollectionEntry<"entries">}>
     <Content/>
 </BlogPost>

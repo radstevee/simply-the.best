@@ -1,8 +1,9 @@
 ---
-title: "Gradle"
+title: "gradle"
 description: "Why Gradle is simply the Best"
 pubDate: 2024-12-31
 draft: false
+author: RaydanOMG
 ---
 
 # Why Gradle Is Simply the Best  

@@ -29,17 +29,12 @@ const blog = defineCollection({
             alt: z.string().optional(),
         }).optional(),
         ogImage: z.string().optional(),
-        tags: z
-            .array(z.string())
-            .default([])
-            .transform(removeDupsAndLowercase)
-            .optional(),
-        series: z.string().optional(),
         draft: z.boolean().optional().default(false),
         // for pinning posts
         order: z.number().min(1).max(5).optional(),
         // hide a post from pagination
-        hide: z.boolean().optional().default(false)
+        hide: z.boolean().optional().default(false),
+        author: z.string()
     }),
 });
 

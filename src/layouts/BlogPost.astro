@@ -11,7 +11,7 @@ import {siteConfig} from "../consts";
 import {getLangFromUrl, useUITranslations} from "@/utils";
 
 interface Props {
-    post: CollectionEntry<"blog">;
+    post: CollectionEntry<"entries">;
 }
 
 const {post} = Astro.props;
@@ -25,9 +25,8 @@ const {
         updatedDate,
         heroImage,
         ogImage,
-        tags,
-        series,
         draft,
+        author,
     },
 } = post;
 
@@ -68,18 +67,8 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
                             </div>
                 )
             }
-            {
-                series && (
-                            <div class="md:sr-only not-sr-only">
-                                <span>Part of series:</span>
-                                <a class="cody-link" href={`/series/${series}`}>
-                                    {series}
-                                </a>
-                            </div>
-                )
-            }
             <div class="flex gap-2 items-center">
-                <h1 class="text-3xl my-0">{title}</h1>
+                <h1 class="text-3xl my-0">why {title} is simply the best</h1>
                 {
                     draft && (
                                 <span class="px-1 py-0 bg-red-200 text-red-600 text-sm font-semibold">
@@ -94,7 +83,7 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
                         dateTimeOptions={dateTimeOptions}
                 />
 				<span>
-					/ {minutesRead}
+					/ {minutesRead} / written by {author}
 				</span>
                 {
                     updatedDate && (
@@ -108,23 +97,6 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
                     )
                 }
 			</span>
-            {
-                tags && (
-                            <ul class="not-prose flex gap-2 flex-wrap">
-                                <Icon
-                                        class="w-5 h-5"
-                                        name="carbon:tag-group"
-                                        aria-hidden="true"
-                                        focusable="false"
-                                />
-                                {tags.map((tag: string) => (
-                                        <li class="tag">
-                                            <a href={`/${lang}/tags/${tag}`}>{tag}</a>
-                                        </li>
-                                ))}
-                            </ul>
-                )
-            }
         </header>
         <hr class="my-4"/>
         <main
@@ -139,24 +111,6 @@ const articleDate = updatedDate?.toISOString() ?? pubDate.toISOString();
             <p>
                 {description}
             </p>
-            {
-                series && (
-                            <div class="pt-2 hidden md:block">
-                                <span>Part of series: </span>
-                                <br/>
-                                <ul>
-                                    <li>
-                                        <a
-                                                class="cody-link"
-                                                href={`/${lang}/series/${series}`}
-                                        >
-                                            {series}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                )
-            }
         </div>
         {!!headings.length &&
                 <TOC headings={headings}/>}

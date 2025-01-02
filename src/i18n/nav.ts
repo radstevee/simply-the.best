@@ -13,27 +13,6 @@ export default {
         "home": {
             text: "home",
             slug: ""
-        },
-        "about": {
-            text: "about",
-            slug: "about"
-        },
-        "blog": {
-            text: "blog",
-            slug: "blog",
-            route: "/blog/pages/1"
-        },
-        "archive": {
-            text: "archive",
-            slug: "archive"
-        },
-        "tags": {
-            text: "tags",
-            slug: "tags"
-        },
-        "series": {
-            text: "series",
-            slug: "series"
         }
     }
 } as const satisfies TranslationNavEntries;

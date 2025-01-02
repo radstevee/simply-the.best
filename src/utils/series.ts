@@ -1,15 +1,15 @@
 import type {CollectionEntry} from "astro:content";
 
-export function getAllSeries(posts: Array<CollectionEntry<"blog">>) {
+export function getAllSeries(posts: Array<CollectionEntry<"entries">>) {
     return posts.flatMap(({data}) => (data.series ? [...data.series] : []));
 }
 
-export function getUniqueSeries(posts: Array<CollectionEntry<"blog">>) {
+export function getUniqueSeries(posts: Array<CollectionEntry<"entries">>) {
     return [...new Set(getAllSeries(posts))];
 }
 
 export function getUniqueSeriesWithCount(
-    posts: Array<CollectionEntry<"blog">>,
+    posts: Array<CollectionEntry<"entries">>,
 ): Array<[string, number]> {
     return [
         ...getAllSeries(posts).reduce(

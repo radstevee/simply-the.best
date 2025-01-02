@@ -19,7 +19,8 @@ const filteredPostsByLanguage = filterByLanguage(allPostsByPinned, "en").slice(0
 
 <BaseLayout title="Home">
     <section>
-        <h1 class="title">hello world</h1>
+        <h1 class="title">welcome</h1>
+        we write shit about shit that is simply the best
         <div>
             <SocialMediaLinks/>
         </div>
@@ -30,7 +31,7 @@ const filteredPostsByLanguage = filterByLanguage(allPostsByPinned, "en").slice(0
         <ul class="space-y-4 sm:space-y-2">
             {
                 filteredPostsByLanguage.map((p) => (
-                        <PostPreview post={p as CollectionEntry<"blog">}/>
+                        <PostPreview post={p as CollectionEntry<"entries">}/>
                 ))
             }
         </ul>

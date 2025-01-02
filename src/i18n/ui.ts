@@ -12,7 +12,7 @@ export default {
             text: "simply-the.best"
         },
         "site.description": {
-            text: "A minimalist blog theme built with Astro. A quick and easy starter build for anyone who wants to start their own blog."
+            text: "A minimalist entries theme built with Astro. A quick and easy starter build for anyone who wants to start their own entries."
         },
         "profile.description": {
             text: "your bio description"

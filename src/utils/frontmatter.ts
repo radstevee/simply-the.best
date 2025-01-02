@@ -1,19 +1,19 @@
 import type {CollectionEntry} from "astro:content";
 
 // should only be used with frontmatter arrays
-export function getAllPostsByProperty(prop: "series" | "tags", posts: Array<CollectionEntry<"blog">>) {
+export function getAllPostsByProperty(prop: "series" | "tags", posts: Array<CollectionEntry<"entries">>) {
     return posts.flatMap(({data}) => {
         return data[prop] ?? [];
     })
 }
 
-export function getUniqueByProperty(prop: "series" | "tags", posts: Array<CollectionEntry<"blog">>) {
+export function getUniqueByProperty(prop: "series" | "tags", posts: Array<CollectionEntry<"entries">>) {
     return [...new Set(getAllPostsByProperty(prop, posts))];
 }
 
 export function getUniqueWithCountByProperty(
     prop: "series" | "tags",
-    posts: Array<CollectionEntry<"blog">>,
+    posts: Array<CollectionEntry<"entries">>,
 ): Array<[string, number]> {
     return [
         ...getAllPostsByProperty(prop, posts).reduce(

@@ -38,7 +38,7 @@ export const getStaticPaths = (async ({paginate}) => {
 }) satisfies GetStaticPaths;
 
 interface Props {
-    page: Page<CollectionEntry<"blog">>;
+    page: Page<CollectionEntry<"entries">>;
     tags: string[];
 }
 

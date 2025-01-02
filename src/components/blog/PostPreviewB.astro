@@ -6,7 +6,7 @@ import {Icon} from "astro-icon";
 import {getLangFromUrl, getSlugFromCollectionEntry} from "@/utils";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
-    post: CollectionEntry<"blog">;
+    post: CollectionEntry<"entries">;
     withDesc?: boolean;
 };
 

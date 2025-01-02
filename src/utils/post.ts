@@ -2,7 +2,7 @@ import {type CollectionEntry, getCollection} from "astro:content";
 import {getLangFromSlug, type SupportedLanguage} from "./i18n";
 
 export async function getAllPosts(filterHidden: boolean = false) {
-    return await getCollection("blog", ({data}) => {
+    return await getCollection("entries", ({data}) => {
         if (import.meta.env.PROD) {
             if (filterHidden) {
                 return !data.hide;
@@ -19,7 +19,7 @@ export async function getAllPosts(filterHidden: boolean = false) {
 // ascending = oldest to newest date
 // descending = newest to oldest date
 export function sortMDByDate(
-    posts: Array<CollectionEntry<"blog">>,
+    posts: Array<CollectionEntry<"entries">>,
     order: "ascending" | "descending" = "descending"
 ) {
     // -1 = ascending
@@ -34,7 +34,7 @@ export function sortMDByDate(
 }
 
 
-export function sortMDByPinned(posts: Array<CollectionEntry<"blog">>) {
+export function sortMDByPinned(posts: Array<CollectionEntry<"entries">>) {
     return posts.sort((a, b) => {
         const aOrder = a.data.order ?? 100;
         const bOrder = b.data.order ?? 100;
@@ -42,7 +42,7 @@ export function sortMDByPinned(posts: Array<CollectionEntry<"blog">>) {
     });
 }
 
-export function filterByLanguage(posts: Array<CollectionEntry<"blog">>, lang: SupportedLanguage): Array<CollectionEntry<"blog">> {
+export function filterByLanguage(posts: Array<CollectionEntry<"entries">>, lang: SupportedLanguage): Array<CollectionEntry<"entries">> {
     return posts.filter((post) => {
         const translationLang = getLangFromSlug(post.slug);
         return lang === translationLang;
@@ -51,7 +51,7 @@ export function filterByLanguage(posts: Array<CollectionEntry<"blog">>, lang: Su
 
 export function getPostsByTag(
     tag: string,
-    posts: Array<CollectionEntry<"blog">>
+    posts: Array<CollectionEntry<"entries">>
 ) {
     return posts.filter(post => {
         if (post.data.tags) {
@@ -63,7 +63,7 @@ export function getPostsByTag(
 
 export function getPostsBySeries(
     series: string,
-    posts: Array<CollectionEntry<"blog">>
+    posts: Array<CollectionEntry<"entries">>
 ) {
     return posts.filter(post => {
         if (post.data.series) {
@@ -74,7 +74,7 @@ export function getPostsBySeries(
 }
 
 // Possible slugs: "[lang]/[slug]" or "[slug]"
-export function getSlugFromCollectionEntry(entry: CollectionEntry<"blog">) {
+export function getSlugFromCollectionEntry(entry: CollectionEntry<"entries">) {
     const [, ...slugs] = entry.slug.split("/");
     // if collection entry is a translation, grab the slug only
     return slugs.length ? slugs.join("/") : entry.slug;

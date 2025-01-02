@@ -34,7 +34,7 @@
     }
 
     /*
-    * CSS for markdown and MDX blog posts
+    * CSS for markdown and MDX entries posts
     */
     .prose-cody blockquote {
         @apply text-quote border-l-0;

@@ -5,6 +5,7 @@ import SelectLanguage from "@/components/SelectLanguage";
 import {getLangFromUrl} from "@/utils";
 import {useNavTranslations} from "src/utils/i18n";
 import type {NavEntry} from "@/i18n/nav";
+import {getCollection} from "astro:content";
 
 const url = new URL(Astro.request.url);
 const lang = getLangFromUrl(Astro.url);
@@ -17,6 +18,8 @@ function buildNavLink(nav: string, entry: NavEntry): string {
 
     return `/${lang}${nav != "home" ? `/${entry.slug}/` : "/"}`;
 }
+
+const entries = await getCollection("entries");
 ---
 
 <header
@@ -60,20 +63,27 @@ function buildNavLink(nav: string, entry: NavEntry): string {
                     );
                 })
             }
-            <HeaderLink
-                    class="sm:hidden block py-2 sm:py-0"
-                    href="/tags"
-                    title="tags"
-                    aria-current={url.pathname === "tags" ? "page" : false}
-                    data-astro-prefetch>{t("tags").text}</HeaderLink
-            >
-            <HeaderLink
-                    class="sm:hidden block py-2 sm:py-0"
-                    href="/series"
-                    title="series"
-                    aria-current={url.pathname === "series" ? "page" : false}
-                    data-astro-prefetch>{t("series").text}</HeaderLink
-            >
+
+            {
+                entries.map((entry) => {
+                    const href = "/en/entries/" + entry.slug
+
+                    return (
+                            <HeaderLink
+                                    class="block py-2 sm:py-0"
+                                    href={href}
+                                    title={entry.slug}
+                                    aria-current={
+                                        url.pathname === entry.slug
+                                            ? "page"
+                                            : false
+                                    }
+                            >
+                                {entry.slug}
+                            </HeaderLink>
+                    )
+                })
+            }
         </div>
     </nav>
 
@@ -147,34 +157,34 @@ function buildNavLink(nav: string, entry: NavEntry): string {
 <script>
     // src: https://github.com/chrismwilliams/astro-theme-cactus/blob/a85e0e559d3f92b32e73990486c0574b2b733227/src/components/layout/Header.astro
 
-        class MobileNavBtn extends HTMLElement {
-            private headerEl: HTMLElement;
-            private mobileButtonEl: HTMLButtonElement;
-            private menuOpen: boolean;
+    class MobileNavBtn extends HTMLElement {
+        private headerEl: HTMLElement;
+        private mobileButtonEl: HTMLButtonElement;
+        private menuOpen: boolean;
 
-            constructor() {
-                super();
-                this.headerEl = document.getElementById("main-header")!;
-                this.mobileButtonEl = this.querySelector(
-                    "button",
-                    ) as HTMLButtonElement;
-                this.menuOpen = false;
+        constructor() {
+            super();
+            this.headerEl = document.getElementById("main-header")!;
+            this.mobileButtonEl = this.querySelector(
+                "button",
+            ) as HTMLButtonElement;
+            this.menuOpen = false;
 
-                this.mobileButtonEl.addEventListener(
-                    "click",
-                    this.toggleMobileMenu,
-                    );
-                }
+            this.mobileButtonEl.addEventListener(
+                "click",
+                this.toggleMobileMenu,
+            );
+        }
 
-            toggleMobileMenu = () => {
-                this.headerEl.classList.toggle("menu-open");
-                this.menuOpen = !this.menuOpen;
-                this.mobileButtonEl.setAttribute(
-                    "aria-expanded",
-                    this.menuOpen.toString(),
-                    );
-                };
-            }
+        toggleMobileMenu = () => {
+            this.headerEl.classList.toggle("menu-open");
+            this.menuOpen = !this.menuOpen;
+            this.mobileButtonEl.setAttribute(
+                "aria-expanded",
+                this.menuOpen.toString(),
+            );
+        };
+    }
 
-        customElements.define("nav-button", MobileNavBtn);
+    customElements.define("nav-button", MobileNavBtn);
 </script>

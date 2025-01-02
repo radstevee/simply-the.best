@@ -12,6 +12,6 @@ export const onRequest = defineMiddleware((ctx, next) => {
     const subdomain = hostParts.slice(0, -2).join(".");
     const target = subdomain.replace("-is", "").replace("-are", "");
 
-    return Response.redirect(new URL("https://simply-the.best/en/blog/" + target), 302);
+    return Response.redirect(new URL("https://simply-the.best/en/entries/" + target), 302);
 });
 
